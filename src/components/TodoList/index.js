@@ -1,10 +1,12 @@
-import { Col, Row, Input, Button, Select, Tag } from 'antd';
+import { Col, Row, Input, Button, Select } from 'antd';
 import Todo from '../Todo';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../../redux/actions';
 import { v4 as uuidv4 } from 'uuid'
 import { useState } from 'react';
 import { todoListSelector } from '../../redux/selectors';
+import { Tag } from '../../stories/Tag/Tag.jsx'
+
 
 export default function TodoList() {
   const [todoName, setTodoName] = useState('')
@@ -36,20 +38,20 @@ export default function TodoList() {
   return (
     <Row style={{ height: 'calc(100% - 40px)' }}>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'auto' }}>
-         {todoList.map((item) => <Todo key={item.id} name={item.name} prioriry={item.priority} />)}
+        {todoList.map((item) => <Todo key={item.id} name={item.name} prioriry={item.priority} />)}
       </Col>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
           <Input value={todoName} onChange={handleInputChange} />
           <Select defaultValue="Medium" value={priority} onChange={handlePriorityChange}>
             <Select.Option value='High' label='High'>
-              <Tag color='red'>High</Tag>
+              <Tag color='red' label='Hight' />
             </Select.Option>
             <Select.Option value='Medium' label='Medium'>
-              <Tag color='blue'>Medium</Tag>
+              <Tag color='blue' label='Medium' />
             </Select.Option>
             <Select.Option value='Low' label='Low'>
-              <Tag color='gray'>Low</Tag>
+              <Tag color='grey' label='Low' />
             </Select.Option>
           </Select>
           <Button type='primary' onClick={handleAddButtonClick}>
